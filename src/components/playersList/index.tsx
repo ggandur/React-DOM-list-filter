@@ -1,8 +1,11 @@
+import getPlayerPic from "../../functions/getPlayerPic";
 import PlayerType from "../../interfaces/playerType";
 import PlayersListWrapper from "./playersListStyle";
 
 type PlayersListProps = {
   playersArray: Array<PlayerType>;
+  setRenderPlayerCard: React.Dispatch<React.SetStateAction<boolean>>;
+  setActivePlayerCard: React.Dispatch<React.SetStateAction<{}>>;
 };
 
 function PlayersList(props: PlayersListProps) {
@@ -10,14 +13,18 @@ function PlayersList(props: PlayersListProps) {
     <>
       <div className="PlayerContainer">
         {props.playersArray.map((player: PlayerType, index) => (
-          <PlayersListWrapper key={index}>
-            <a href="#">{player.firstName + " " + player.lastName}</a>
-            <img
-              src={`https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${player.personId}.png`}
-              alt=""
-              height={"80px"}
-            />
-          </PlayersListWrapper>
+          <button
+            className="PlayerBox"
+            onClick={() => {
+              props.setRenderPlayerCard(true);
+              props.setActivePlayerCard(player);
+            }}
+          >
+            <PlayersListWrapper key={index}>
+              {player.firstName + " " + player.lastName}
+              <img src={getPlayerPic(player.personId)} alt="" height={"80px"} />
+            </PlayersListWrapper>
+          </button>
         ))}
       </div>
     </>
