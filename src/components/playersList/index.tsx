@@ -1,33 +1,46 @@
-import getPlayerPic from "../../functions/getPlayerPic";
 import PlayerType from "../../interfaces/playerType";
-import PlayersListWrapper from "./playersListStyle";
+import PlayerBox from "../playerBox";
 
 type PlayersListProps = {
   playersArray: Array<PlayerType>;
+  renderFavoritePlayersOnly: boolean;
   setRenderPlayerCard: React.Dispatch<React.SetStateAction<boolean>>;
   setActivePlayerCard: React.Dispatch<React.SetStateAction<{}>>;
+  setFavoritePlayersArray: any;
+  favoritePlayersArray: Array<PlayerType>;
 };
 
 function PlayersList(props: PlayersListProps) {
   return (
-    <>
-      <div className="PlayerContainer">
-        {props.playersArray.map((player: PlayerType, index) => (
-          <button
-            className="PlayerBox"
-            onClick={() => {
-              props.setRenderPlayerCard(true);
-              props.setActivePlayerCard(player);
-            }}
-          >
-            <PlayersListWrapper key={index}>
-              {player.firstName + " " + player.lastName}
-              <img src={getPlayerPic(player.personId)} alt="" height={"80px"} />
-            </PlayersListWrapper>
-          </button>
-        ))}
-      </div>
-    </>
+    <div className="PlayerContainer">
+      {!props.renderFavoritePlayersOnly
+        ? props.playersArray.map((player: PlayerType, index) => (
+            <PlayerBox
+              index={index}
+              player={player}
+              playersArray={props.playersArray}
+              setRenderPlayerCard={props.setRenderPlayerCard}
+              setActivePlayerCard={props.setActivePlayerCard}
+              setFavoritePlayersArray={props.setFavoritePlayersArray}
+              favoritePlayersArray={props.favoritePlayersArray}
+            />
+          ))
+        : props.playersArray.map((player: PlayerType, index) => (
+            <>
+              {player.favorite == true ? (
+                <PlayerBox
+                  index={index}
+                  player={player}
+                  playersArray={props.playersArray}
+                  setRenderPlayerCard={props.setRenderPlayerCard}
+                  setActivePlayerCard={props.setActivePlayerCard}
+                  setFavoritePlayersArray={props.setFavoritePlayersArray}
+                  favoritePlayersArray={props.favoritePlayersArray}
+                />
+              ) : null}
+            </>
+          ))}
+    </div>
   );
 }
 

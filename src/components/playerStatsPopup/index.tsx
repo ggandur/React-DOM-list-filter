@@ -11,25 +11,28 @@ type PlayerStatsPopupProps = {
 
 function PlayerStatsPopup(props: PlayerStatsPopupProps) {
   return props.active ? (
-    <PlayerStatsPopupWrapper>
-      <h2>
-        {props.activePlayerCard.jersey +
-          " " +
-          props.activePlayerCard.firstName +
-          " " +
-          props.activePlayerCard.lastName}
-      </h2>
-      <img src={getPlayerPic(props.activePlayerCard.personId)} alt="" />
-      <PlayerStatsContainer activePlayerCard={props.activePlayerCard} />
-      <button
-        className="ClosePopupButton"
-        onClick={() => {
-          props.setRenderPlayerCard(false);
-        }}
-      >
-        Fechar
-      </button>
-    </PlayerStatsPopupWrapper>
+    <>
+    <div className="FadeEffect"></div>
+      <PlayerStatsPopupWrapper>
+        <h2>
+          {props.activePlayerCard.jersey +
+            " " +
+            props.activePlayerCard.firstName +
+            " " +
+            props.activePlayerCard.lastName}
+        </h2>
+        <img src={getPlayerPic(props.activePlayerCard.personId)} alt="" />
+        <PlayerStatsContainer activePlayerCard={props.activePlayerCard} />
+        <button
+          className="ClosePopupButton"
+          onClick={() => {
+            props.setRenderPlayerCard(false);
+          }}
+        >
+          Fechar
+        </button>
+      </PlayerStatsPopupWrapper>
+    </>
   ) : null;
 }
 

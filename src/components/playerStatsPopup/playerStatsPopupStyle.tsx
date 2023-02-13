@@ -12,6 +12,7 @@ const PlayerStatsPopupWrapper = styled.div`
   color: white;
   width: 100%;
   border-radius: 24px 24px 0px 0px;
+  z-index:100;
 `;
 
 export default PlayerStatsPopupWrapper;

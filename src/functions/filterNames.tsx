@@ -4,7 +4,7 @@ function filterNames() {
   ).value.toLowerCase();
   const listItems = [
     ...(document.getElementsByClassName(
-      "PlayerBox"
+      "sc-gswNZR gxctYX"
     ) as HTMLCollectionOf<HTMLElement>),
   ];
   listItems.forEach((player) => {
