@@ -21,7 +21,7 @@ interface PlayerType {
   weightKilograms?: number;
   weightPounds?: number;
   yearsPro?: number;
-  favorite?: boolean;
+  isFavorite?: boolean;
 }
 
 export default PlayerType;

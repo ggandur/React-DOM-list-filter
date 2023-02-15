@@ -10,7 +10,7 @@ type PlayerBoxProps = {
   setRenderPlayerCard: React.Dispatch<React.SetStateAction<boolean>>;
   setActivePlayerCard: React.Dispatch<React.SetStateAction<{}>>;
   setFavoritePlayersArray: any;
-  favoritePlayersArray: Array<PlayerType>;
+  favoritePlayersArray: any;
 };
 
 let buttonElement, playerIndex;
@@ -22,26 +22,27 @@ function PlayerBox(props: PlayerBoxProps) {
         className="FavoritePlayerButton"
         id={`button${props.index}`}
         style={{
-          backgroundColor: props.player.favorite ? "red" : "transparent",
+          backgroundColor: props.player.isFavorite ? "red" : "transparent",
         }}
         onClick={() => {
           buttonElement = document.getElementById(`button${props.index}`);
-          if (!props.player.favorite) {
-            props.player.favorite = true;
+          if (!props.player.isFavorite) {
+            props.player.isFavorite = true;
             buttonElement
               ? (buttonElement.style.backgroundColor = "red")
               : null;
-            props.favoritePlayersArray.push(props.player);
-            props.setFavoritePlayersArray(props.favoritePlayersArray);
+            props.favoritePlayersArray.push(props.player.personId);
           } else {
-            props.player.favorite = false;
+            props.player.isFavorite = false;
             buttonElement
               ? (buttonElement.style.backgroundColor = "transparent")
               : null;
-            playerIndex = props.favoritePlayersArray.indexOf(props.player);
+            playerIndex = props.favoritePlayersArray.indexOf(
+              props.player.personId
+            );
             props.favoritePlayersArray.splice(playerIndex, 1);
-            props.setFavoritePlayersArray(props.favoritePlayersArray);
           }
+          props.setFavoritePlayersArray(props.favoritePlayersArray);
           console.log("Array favoritos atualizado: ");
           console.log(props.favoritePlayersArray);
           window.localStorage.setItem(

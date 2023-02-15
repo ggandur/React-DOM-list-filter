@@ -1,10 +1,8 @@
 import axios from "axios";
-import PlayerType from "../interfaces/playerType";
 
 function getNbaPlayers(
-  setPlayersArray: React.Dispatch<React.SetStateAction<never[]>>,
-  playersArray: Array<PlayerType>,
-  favoritePlayersArray: Array<PlayerType>
+  setPlayersArray: any,
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) {
   axios
     .get("http://data.nba.net/10s/prod/v1/2016/players.json")
@@ -14,7 +12,8 @@ function getNbaPlayers(
     })
     .catch((e) => {
       console.error(e);
-    });
+    })
+    .finally(() => setLoading(false));
 }
 
 export default getNbaPlayers;

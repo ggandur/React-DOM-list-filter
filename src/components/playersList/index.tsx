@@ -7,7 +7,7 @@ type PlayersListProps = {
   setRenderPlayerCard: React.Dispatch<React.SetStateAction<boolean>>;
   setActivePlayerCard: React.Dispatch<React.SetStateAction<{}>>;
   setFavoritePlayersArray: any;
-  favoritePlayersArray: Array<PlayerType>;
+  favoritePlayersArray: any;
 };
 
 function PlayersList(props: PlayersListProps) {
@@ -27,7 +27,7 @@ function PlayersList(props: PlayersListProps) {
           ))
         : props.playersArray.map((player: PlayerType, index) => (
             <>
-              {player.favorite == true ? (
+              {player.isFavorite == true ? (
                 <PlayerBox
                   index={index}
                   player={player}
