@@ -1,3 +1,4 @@
+import PlayersStarSVG from "../../assets/playersStarSVG";
 import getPlayerPic from "../../functions/getPlayerPic";
 import PlayerType from "../../interfaces/playerType";
 import PlayersListWrapper from "../playersList/playersListStyle";
@@ -13,7 +14,7 @@ type PlayerBoxProps = {
   favoritePlayersArray: any;
 };
 
-let buttonElement, playerIndex;
+let playerIndex;
 
 function PlayerBox(props: PlayerBoxProps) {
   return (
@@ -21,26 +22,22 @@ function PlayerBox(props: PlayerBoxProps) {
       <button
         className="FavoritePlayerButton"
         id={`button${props.index}`}
-        style={{
-          backgroundColor: props.player.isFavorite ? "red" : "transparent",
-        }}
         onClick={() => {
-          buttonElement = document.getElementById(`button${props.index}`);
           if (!props.player.isFavorite) {
             props.player.isFavorite = true;
-            buttonElement
-              ? (buttonElement.style.backgroundColor = "red")
-              : null;
             props.favoritePlayersArray.push(props.player.personId);
+            document.getElementById(
+              `playersStarSVG${props.player.personId}`
+            )!.style.fill = "#fece3c";
           } else {
             props.player.isFavorite = false;
-            buttonElement
-              ? (buttonElement.style.backgroundColor = "transparent")
-              : null;
             playerIndex = props.favoritePlayersArray.indexOf(
               props.player.personId
             );
             props.favoritePlayersArray.splice(playerIndex, 1);
+            document.getElementById(
+              `playersStarSVG${props.player.personId}`
+            )!.style.fill = "transparent";
           }
           props.setFavoritePlayersArray(props.favoritePlayersArray);
           console.log("Array favoritos atualizado: ");
@@ -49,9 +46,17 @@ function PlayerBox(props: PlayerBoxProps) {
             "FAVORITE_PLAYERS",
             JSON.stringify(props.favoritePlayersArray)
           );
-          //console.log(props.playersArray);
         }}
-      ></button>
+      >
+        {props.player.isFavorite ? (
+          <PlayersStarSVG fill={"#fece3c"} personId={props.player.personId!} />
+        ) : (
+          <PlayersStarSVG
+            fill={"transparent"}
+            personId={props.player.personId!}
+          />
+        )}
+      </button>
       <button
         className="PlayerBoxButton"
         onClick={() => {

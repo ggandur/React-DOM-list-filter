@@ -5,6 +5,8 @@ import PlayersList from "./components/playersList";
 import filterNames from "./functions/filterNames";
 import PlayerStatsPopup from "./components/playerStatsPopup";
 import PlayerType from "./interfaces/playerType";
+import StarSVG from "./assets/starSVG";
+import LoadingSVG from "./assets/loaderSVG";
 
 function App() {
   const [playersArray, setPlayersArray] = useState([]);
@@ -45,10 +47,14 @@ function App() {
         className="ShowFavoritedPlayersButton"
         onClick={() => {
           renderFavoritePlayersOnly
-            ? setRenderFavoritePlayersOnly(false)
-            : setRenderFavoritePlayersOnly(true);
+            ? ((document.getElementById("StarSVG")!.style.fill = "white"),
+              setRenderFavoritePlayersOnly(false))
+            : ((document.getElementById("StarSVG")!.style.fill = "#fece3c"),
+              setRenderFavoritePlayersOnly(true));
         }}
-      ></button>
+      >
+        <StarSVG fill={"white"} />
+      </button>
       <div className="Title">
         <h2>Jogadores Ativos da NBA</h2>
         <input type="text" id="searchBar" placeholder="Pesquisar jogador..." />
@@ -63,7 +69,9 @@ function App() {
       />
     </div>
   ) : (
-    <div>Carregando</div>
+    <div className="LoadingScreen">
+      <LoadingSVG />
+    </div>
   );
 }
 

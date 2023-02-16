@@ -14,6 +14,7 @@ function getNbaPlayers(
       console.error(e);
     })
     .finally(() => setLoading(false));
+  // .finally(() => setTimeout(() => setLoading(false), 2000));
 }
 
 export default getNbaPlayers;
