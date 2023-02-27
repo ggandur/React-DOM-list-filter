@@ -53,7 +53,7 @@ function App() {
               setRenderFavoritePlayersOnly(true));
         }}
       >
-        <StarSVG fill={"white"} />
+        <StarSVG />
       </button>
       <div className="Title">
         <h2>Jogadores Ativos da NBA</h2>

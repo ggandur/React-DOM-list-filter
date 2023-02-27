@@ -5,7 +5,7 @@ function getNbaPlayers(
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) {
   axios
-    .get("http://data.nba.net/10s/prod/v1/2016/players.json")
+    .get("http://data.nba.net/10s/prod/v1/2022/players.json")
     .then((response) => {
       console.log(response.data);
       setPlayersArray(response.data.league.standard);

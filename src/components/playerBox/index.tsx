@@ -18,7 +18,7 @@ let playerIndex;
 
 function PlayerBox(props: PlayerBoxProps) {
   return (
-    <PlayerBoxWrapper>
+    <PlayerBoxWrapper className="player_box">
       <button
         className="FavoritePlayerButton"
         id={`button${props.index}`}

@@ -1,15 +1,11 @@
-type StarSVGProps = {
-  fill: string;
-};
-
-function StarSVG(props: StarSVGProps) {
+function StarSVG() {
   return (
     <svg
       id="StarSVG"
       width="48px"
       height="48px"
       viewBox="0 0 24 24"
-      fill={`${props.fill}`}
+      fill="white"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
